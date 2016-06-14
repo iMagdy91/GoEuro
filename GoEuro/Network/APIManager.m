@@ -31,11 +31,13 @@ static APIManager *sharedInstance = nil;
     
     NSString * language = [[NSLocale preferredLanguages] firstObject];
     NSString *url = [NSString stringWithFormat:APIURL,language,searchText];
+    NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding:
+                            NSUTF8StringEncoding];
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]init];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    [manager GET:url parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [manager GET:encodedUrl parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSError *error;
         NSMutableArray *locations = [Locations arrayOfModelsFromDictionaries:responseObject error:&error];
         Location *location = [[Location alloc]init];

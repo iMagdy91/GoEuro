@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextField;
 @property (weak, nonatomic) IBOutlet UITableView *originCitiesTableView;
 @property (weak, nonatomic) IBOutlet UITableView *destinationCitiesTableView;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (nonatomic,strong) NSArray *locations;
 
@@ -37,6 +40,8 @@
 -(void) customizeAppearance {
     _originCitiesTableView.hidden = YES;
     _destinationCitiesTableView.hidden = YES;
+    _datePicker.hidden = YES;
+    _toolBar.hidden = YES;
 }
 -(void) getUserLocation {
     
@@ -51,6 +56,27 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [_originTextField resignFirstResponder];
     [_destinationTextField resignFirstResponder];
+}
+- (IBAction)searchButtonPressed:(UIButton *)sender {
+    [self showErrorMessage:@"This feature will be implemented in the future"];
+}
+- (IBAction)pickDatePressed:(UIButton *)sender {
+    _datePicker.hidden = NO;
+    _toolBar.hidden = NO;
+}
+- (IBAction)dateDonePressed:(UIBarButtonItem *)sender {
+    _datePicker.hidden = YES;
+    _toolBar.hidden = YES;
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd.MM.yyy"];
+    
+    
+    NSDate *pickedDate = [_datePicker date];
+    
+    NSString *dateString = [dateFormat stringFromDate:pickedDate];
+    
+    _dateLabel.text = dateString;
 }
 
 - (IBAction)textFieldEditingChanged:(UITextField *)sender {
@@ -119,6 +145,20 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate Methods
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Locations *location = [_locations objectAtIndex:indexPath.row];
+    
+    if ([tableView isEqual:_originCitiesTableView]){
+        _originTextField.text = [NSString stringWithFormat:@"%@, %@",location.name,location.country];
+    }
+    
+    else {
+        _destinationTextField.text = [NSString stringWithFormat:@"%@, %@",location.name,location.country];
+    }
+    tableView.hidden = YES;
+}
 
 #pragma mark - UITextFieldDelegate Methods
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

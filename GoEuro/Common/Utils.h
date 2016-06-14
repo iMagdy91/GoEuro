@@ -12,5 +12,5 @@
 
 
 +(NSArray*) sortLocationsByNearest:(NSMutableArray*)locations;
-
++ (NSString *)urlencode:(NSString*)url;
 @end

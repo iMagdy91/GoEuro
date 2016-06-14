@@ -17,6 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRO-fy-8B1">
+                                <rect key="frame" x="20" y="449" width="48" height="30"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="2EZ-3L-MSI" eventType="touchUpInside" id="qWe-JF-ceJ"/>
+                                </connections>
+                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Origin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7At-kz-HSu">
                                 <rect key="frame" x="20" y="28" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -38,7 +45,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7v-QU-d5f">
                                 <rect key="frame" x="20" y="388" width="530" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKx-RF-f2H">
@@ -48,6 +55,9 @@
                                     <constraint firstAttribute="height" constant="32" id="wrE-GJ-rvM"/>
                                 </constraints>
                                 <state key="normal" image="Calendar"/>
+                                <connections>
+                                    <action selector="pickDatePressed:" destination="2EZ-3L-MSI" eventType="touchUpInside" id="I5J-p5-LXQ"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XQC-NO-xHu">
                                 <rect key="frame" x="20" y="66" width="560" height="132"/>
@@ -91,33 +101,66 @@
                                     <outlet property="delegate" destination="2EZ-3L-MSI" id="Slp-8X-GdP"/>
                                 </connections>
                             </tableView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="DsE-nA-pSc">
+                                <rect key="frame" x="0.0" y="444" width="600" height="156"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="156" id="rbg-0W-rIz"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="487608371.36568803">
+                                    <!--2016-06-14 14:46:11 +0000-->
+                                </date>
+                            </datePicker>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vX-pR-lhc">
+                                <rect key="frame" x="0.0" y="400" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="QCy-k5-F82"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Done" id="ADc-rI-0Qc">
+                                        <connections>
+                                            <action selector="dateDonePressed:" destination="2EZ-3L-MSI" id="Ig8-Qk-uFx"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="J7G-tt-TgI" secondAttribute="trailing" constant="20" id="5J1-vC-381"/>
+                            <constraint firstItem="DsE-nA-pSc" firstAttribute="leading" secondItem="P4A-QW-k0m" secondAttribute="leading" id="5sI-SH-kfQ"/>
                             <constraint firstItem="J7G-tt-TgI" firstAttribute="leading" secondItem="P4A-QW-k0m" secondAttribute="leading" constant="20" id="DUI-Ln-Zd4"/>
                             <constraint firstItem="GKx-RF-f2H" firstAttribute="leading" secondItem="f7v-QU-d5f" secondAttribute="trailing" constant="10" id="GAZ-1a-p07"/>
                             <constraint firstItem="XQC-NO-xHu" firstAttribute="top" secondItem="7At-kz-HSu" secondAttribute="bottom" constant="8" id="HLR-Yl-axj"/>
+                            <constraint firstItem="LRO-fy-8B1" firstAttribute="top" secondItem="f7v-QU-d5f" secondAttribute="bottom" constant="40" id="M7q-0p-0Sp"/>
+                            <constraint firstAttribute="trailing" secondItem="9vX-pR-lhc" secondAttribute="trailing" id="PXg-d9-xyT"/>
                             <constraint firstItem="f7v-QU-d5f" firstAttribute="top" secondItem="J7G-tt-TgI" secondAttribute="bottom" constant="12" id="Pux-pr-6tW"/>
                             <constraint firstItem="XQC-NO-xHu" firstAttribute="leading" secondItem="P4A-QW-k0m" secondAttribute="leading" constant="20" id="Rta-vH-g3a"/>
                             <constraint firstItem="7At-kz-HSu" firstAttribute="top" secondItem="BTR-yo-3gm" secondAttribute="bottom" constant="8" id="chp-9A-AtF"/>
+                            <constraint firstItem="9vX-pR-lhc" firstAttribute="leading" secondItem="P4A-QW-k0m" secondAttribute="leading" id="egP-gj-pGB"/>
                             <constraint firstAttribute="trailing" secondItem="7At-kz-HSu" secondAttribute="trailing" constant="20" id="fEb-YU-UzD"/>
                             <constraint firstItem="GKx-RF-f2H" firstAttribute="top" secondItem="J7G-tt-TgI" secondAttribute="bottom" constant="8" id="gff-MZ-fXA"/>
+                            <constraint firstItem="DsE-nA-pSc" firstAttribute="top" secondItem="9vX-pR-lhc" secondAttribute="bottom" id="gx4-5u-vmS"/>
                             <constraint firstAttribute="trailing" secondItem="GKx-RF-f2H" secondAttribute="trailing" constant="8" id="hvh-sh-Tuu"/>
                             <constraint firstItem="f7v-QU-d5f" firstAttribute="leading" secondItem="P4A-QW-k0m" secondAttribute="leading" constant="20" id="hxi-as-NFl"/>
                             <constraint firstAttribute="trailing" secondItem="VEV-7p-bb2" secondAttribute="trailing" constant="20" id="iOz-Km-iaG"/>
+                            <constraint firstAttribute="trailing" secondItem="DsE-nA-pSc" secondAttribute="trailing" id="jZT-pQ-oBk"/>
+                            <constraint firstItem="LRO-fy-8B1" firstAttribute="leading" secondItem="P4A-QW-k0m" secondAttribute="leading" constant="20" id="l4T-n3-HTY"/>
                             <constraint firstItem="VEV-7p-bb2" firstAttribute="top" secondItem="XQC-NO-xHu" secondAttribute="bottom" constant="8" id="ngN-Pe-qao"/>
                             <constraint firstAttribute="trailing" secondItem="XQC-NO-xHu" secondAttribute="trailing" constant="20" id="pEa-yt-cnX"/>
+                            <constraint firstItem="hUb-0G-mCI" firstAttribute="top" secondItem="DsE-nA-pSc" secondAttribute="bottom" id="stE-uN-hAE"/>
                             <constraint firstItem="VEV-7p-bb2" firstAttribute="leading" secondItem="P4A-QW-k0m" secondAttribute="leading" constant="20" id="wfs-zM-5wx"/>
                             <constraint firstItem="J7G-tt-TgI" firstAttribute="top" secondItem="VEV-7p-bb2" secondAttribute="bottom" constant="8" id="x05-oH-qUi"/>
                             <constraint firstItem="7At-kz-HSu" firstAttribute="leading" secondItem="P4A-QW-k0m" secondAttribute="leading" constant="20" id="xMt-un-zv2"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="f7v-QU-d5f" id="nby-Sb-MUy"/>
+                        <outlet property="datePicker" destination="DsE-nA-pSc" id="tmX-TE-S7D"/>
                         <outlet property="destinationCitiesTableView" destination="J7G-tt-TgI" id="4vm-6M-3eq"/>
                         <outlet property="destinationTextField" destination="VEV-7p-bb2" id="VWw-5Q-w51"/>
                         <outlet property="originCitiesTableView" destination="XQC-NO-xHu" id="8LU-ad-u6P"/>
                         <outlet property="originTextField" destination="7At-kz-HSu" id="cuG-Gg-o9r"/>
+                        <outlet property="toolBar" destination="9vX-pR-lhc" id="YGr-aX-SNC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bxa-RL-ue6" userLabel="First Responder" sceneMemberID="firstResponder"/>
